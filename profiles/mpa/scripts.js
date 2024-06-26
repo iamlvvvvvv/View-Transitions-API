@@ -1,4 +1,4 @@
-const basePath = "/view_transition/profiles/mpa";
+const basePath = "/View-Transitions-API/profiles/mpa/";
 
 const homePagePattern = new URLPattern(`${basePath}(/)*`, window.origin);
 const isHomePage = (url) => {
