@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    :root {
+      --bg-color: #fff;
+      background-color: var(--bg-color);
+    }
+
+    :root.dark {
+      --bg-color: #000;
+    }
+
+    body{
+      width: 100%;
+      height: 100%;
+    }
+
+    #btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn">切换</button>
+</body>
+<script>
+
+    btn.addEventListener('click', (e) => {
+    const transition = document.startViewTransition(() => {
+      document.documentElement.classList.toggle('dark')
+    })
+
+    const x = e.clientX
+    const y = e.clientY
+    const radius = Math.sqrt(Math.max(x, (window.innerWidth - x)) ** 2 + Math.max(y, (window.innerHeight - y)) ** 2)
+    transition.ready.then(() => {
+      // 实现过渡的过程 circle
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0 at ${x}px ${y}px)`,
+            `circle(${radius}px at ${x}px ${y}px)`,
+          ]
+        },
+        {
+          duration: 300,
+          pseudoElement: '::view-transition-new(root)',
+        }
+      )
+    })
+  })
+</script>
+
+</html>
