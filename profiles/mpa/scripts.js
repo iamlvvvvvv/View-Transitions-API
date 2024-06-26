@@ -39,8 +39,6 @@ window.addEventListener("pageswap", async (e) => {
 
     //仅转换到相同的basePath
     //>>跳过！
-    console.log(targetUrl.pathname);
-    console.log(currentUrl)
     if (!targetUrl.pathname.startsWith(basePath)) {
       e.viewTransition.skipTransition();
     }
@@ -59,6 +57,7 @@ window.addEventListener("pageswap", async (e) => {
     //转到个人资料页
     if (isProfilePage(targetUrl)) {
       const profile = extractProfileNameFromUrl(targetUrl).split(".")[0];
+      console.log(profile)
       setTemporaryViewTransitionNames(
         [
           [document.querySelector(`#${profile} span`), "name"],
