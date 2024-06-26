@@ -31,6 +31,7 @@ const setTemporaryViewTransitionNames = async (entries, vtPromise) => {
 //转到详细信息页面时，设置“个人资料名称”和“个人资料头像” 名称
 //在链接到该详细信息页的元素上
 window.addEventListener("pageswap", async (e) => {
+  console.log('pageswap')
   if (e.viewTransition) {
     const currentUrl = e.activation.from?.url
       ? new URL(e.activation.from.url)
