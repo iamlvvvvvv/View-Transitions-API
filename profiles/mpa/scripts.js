@@ -1,4 +1,4 @@
-const basePath = "/View-Transitions-API/profiles/mpa/";
+const basePath = "/View-Transitions-API/profiles/mpa";
 
 const homePagePattern = new URLPattern(`${basePath}(/)*`, window.origin);
 const isHomePage = (url) => {
@@ -39,6 +39,8 @@ window.addEventListener("pageswap", async (e) => {
 
     //仅转换到相同的basePath
     //>>跳过！
+    console.log(targetUrl.pathname);
+    console.log(currentUrl)
     if (!targetUrl.pathname.startsWith(basePath)) {
       e.viewTransition.skipTransition();
     }
